@@ -1,12 +1,16 @@
-﻿using Underdog.Core.Navigation.Regions;
-using Underdog.ViewModels;
-using Underdog.Views;
+﻿using Underdog.Common.GlobalVar;
+using Underdog.Main.ViewModels;
+using Underdog.Main.Views;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Underdog.Common.GlobalVar;
 
-namespace Underdog.Extensions
+using System.Windows.Threading;
+
+using Underdog.Core.Navigation.Regions;
+using Underdog.Wpf.Ioc;
+
+namespace Underdog.Main.Extensions.ServiceExtensions
 {
     public static class RegistViewExtensions
     {
@@ -38,6 +42,9 @@ namespace Underdog.Extensions
             services.AddTransient<AdminHomeViewModel>();
             services.AddTransient<AdminLoginViewModel>();
             services.AddTransient<LockLoginViewModel>();
+
+            // add dialog
+            // services.RegisterDialog<V, VM>();
         }
     }
 }

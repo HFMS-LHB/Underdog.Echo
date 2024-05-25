@@ -23,7 +23,7 @@ using Underdog.Common.GlobalVar;
 using Microsoft.Extensions.Logging;
 using Underdog.Common.Caches;
 
-namespace Underdog.ViewModels
+namespace Underdog.Main.ViewModels
 {
     public partial class MainWindowViewModel: ViewModelBase
     {

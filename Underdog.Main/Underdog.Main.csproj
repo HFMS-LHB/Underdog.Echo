@@ -9,6 +9,13 @@
 	  <StartupObject>Underdog.Main.Program</StartupObject>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Filter\**" />
+    <EmbeddedResource Remove="Filter\**" />
+    <None Remove="Filter\**" />
+    <Page Remove="Filter\**" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<None Remove="appsettings.Development.json" />
 		<None Remove="appsettings.json" />
@@ -35,7 +42,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
-		<PackageReference Include="Underdog.Wpf" Version="1.0.0" />
+		<PackageReference Include="Underdog.Wpf" Version="1.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -46,10 +53,6 @@
 		<None Update="SeedData\CardBox.tsv">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Filter\" />
 	</ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Underdog.ViewModels
+namespace Underdog.Main.ViewModels
 {
     public partial class LockLoginViewModel:ViewModelBase
     {

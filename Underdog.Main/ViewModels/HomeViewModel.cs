@@ -18,7 +18,7 @@ using Underdog.Common.GlobalVar;
 using CommunityToolkit.Mvvm.Messaging;
 using Underdog.Model.ViewMessageModels;
 
-namespace Underdog.ViewModels
+namespace Underdog.Main.ViewModels
 {
     public partial class HomeViewModel : ViewModelBase, INavigationAware
     {

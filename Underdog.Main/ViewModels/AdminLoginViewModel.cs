@@ -14,7 +14,7 @@ using System.Windows.Input;
 using Underdog.Core.Navigation.Regions;
 using Underdog.Common.GlobalVar;
 
-namespace Underdog.ViewModels
+namespace Underdog.Main.ViewModels
 {
     public partial class AdminLoginViewModel : ViewModelBase
     {

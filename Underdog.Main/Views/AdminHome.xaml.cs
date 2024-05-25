@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Underdog.Views
+namespace Underdog.Main.Views
 {
     /// <summary>
     /// AdminHome.xaml 的交互逻辑

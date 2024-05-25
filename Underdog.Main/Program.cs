@@ -16,10 +16,14 @@ using System.Threading.Tasks;
 using Underdog.Extensions.ServiceExtensions;
 using Underdog.Extensions;
 using Underdog.Common.Core;
-using Underdog.ViewModels;
-using Underdog.Views;
-using Underdog.HostedService;
 using Underdog.Common.Helper.Console;
+using Underdog.Main.Views;
+using Underdog.Main.ViewModels;
+using Underdog.Main.Extensions.ServiceExtensions;
+using Underdog.Main.Common.HostDispatcher;
+using Underdog.Main.Extensions.HostedService;
+using Underdog.Wpf.Dialogs;
+
 
 namespace Underdog.Main
 {
@@ -103,6 +107,7 @@ namespace Underdog.Main
             services.AddDbSetup();
             services.AddInitializationHostServiceSetup();
             services.AddAutoMapperSetup();
+            services.AddClientAutoMapperSetup(); // 客户端AutoMapper配置
             if (ConsoleHelper.IsConsoleApp())
             {
                 services.AddAppTableConfigSetup(context.HostingEnvironment);
@@ -120,11 +125,13 @@ namespace Underdog.Main
         private static void ConfigurationClientService(HostBuilderContext context, IServiceCollection services)
         {
             services.AddSingleton<App>();
+            services.AddSingleton<IDispatcher, WpfDispatcher>();
             services.AddScoped<MainWindow>();
             services.AddScoped<MainWindowViewModel>();
             services.AddHostedService<MainHostService<App, MainWindow>>();
             services.AddViewAndViewModel();
             services.AddRegion();
+            services.AddDialog();
             services.AddMvvm();
         }
     }

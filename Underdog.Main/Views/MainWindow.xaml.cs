@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 
 using Underdog.Model.ViewMessageModels;
-using Underdog.Views;
+using Underdog.Main.Views;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Underdog.Views
+namespace Underdog.Main.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
