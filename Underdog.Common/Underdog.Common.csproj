@@ -1,15 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
+	<Import Project="..\build\common.targets" />
 
-  <ItemGroup>
-    <Folder Include="DB\Extension\" />
-  </ItemGroup>
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="DB\Extension\" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="InitQ" Version="1.0.0.18" />
@@ -34,7 +33,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Underdog.Model\Underdog.Model.csproj" />
+		<ProjectReference Include="..\Underdog.Model\Underdog.Model.csproj" />
 	</ItemGroup>
 
 </Project>

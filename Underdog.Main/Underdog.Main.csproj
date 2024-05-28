@@ -1,20 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-	  <StartupObject>Underdog.Main.Program</StartupObject>
-  </PropertyGroup>
+	<Import Project="..\build\client.targets" />
 
-  <ItemGroup>
-    <Compile Remove="Filter\**" />
-    <EmbeddedResource Remove="Filter\**" />
-    <None Remove="Filter\**" />
-    <Page Remove="Filter\**" />
-  </ItemGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<UseWPF>true</UseWPF>
+		<StartupObject>Underdog.Main.Program</StartupObject>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Filter\**" />
+		<EmbeddedResource Remove="Filter\**" />
+		<None Remove="Filter\**" />
+		<Page Remove="Filter\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Remove="appsettings.Development.json" />
@@ -31,9 +30,9 @@
 		</Content>
 	</ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Resources\1.jpeg" />
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Resources\1.jpeg" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Autofac" Version="8.0.0" />
@@ -46,7 +45,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Underdog.Extensions\Underdog.Extensions.csproj" />
+		<ProjectReference Include="..\Underdog.Extensions\Underdog.Extensions.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

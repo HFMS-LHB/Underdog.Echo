@@ -1,10 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<Import Project="..\build\common.targets" />
 
 	<ItemGroup>
 		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
@@ -15,9 +11,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Underdog.EventBus\Underdog.EventBus.csproj" />
-	  <ProjectReference Include="..\Underdog.Serilog\Underdog.Serilog.csproj" />
-	  <ProjectReference Include="..\Underdog.Services\Underdog.Services.csproj" />
+		<ProjectReference Include="..\Underdog.EventBus\Underdog.EventBus.csproj" />
+		<ProjectReference Include="..\Underdog.Serilog\Underdog.Serilog.csproj" />
+		<ProjectReference Include="..\Underdog.Services\Underdog.Services.csproj" />
 	</ItemGroup>
 
 </Project>

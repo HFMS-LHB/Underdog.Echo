@@ -23,6 +23,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.Main", "Underdog.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.EventBus", "Underdog.EventBus\Underdog.EventBus.csproj", "{08D38A73-BADD-4508-BEC1-0B4C50074B64}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0C2E34C9-FBEE-4315-BF00-A059BDBCB647}"
+	ProjectSection(SolutionItems) = preProject
+		build\client.targets = build\client.targets
+		build\common.targets = build\common.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{28180B3C-6E3C-4BF2-997B-FFDFA00DADB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
