@@ -9,32 +9,65 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+using Underdog.EventBus;
+using Underdog.Extensions.RabbitMQ;
 using Underdog.Wpf;
 
 namespace Underdog.Main.Extensions.HostedService
 {
-    public class MainHostService<TApplication, TWindow> : WPFHostedService<TApplication, TWindow>
-        where TApplication : Application
-        where TWindow : Window
+    public class MainHostService : IHostedService
     {
-        public MainHostService(TApplication app, TWindow window, IHostApplicationLifetime applicationLifetime) : base(app, window, applicationLifetime)
+        private readonly IRabbitMQPersistentConnection _persistentConnection;
+        private readonly IEnumerable<IRabbitMQListener> _messageListeners;
+        public MainHostService(IHostApplicationLifetime applicationLifetime,
+                               IRabbitMQPersistentConnection persistentConnection,
+                               IEnumerable<IRabbitMQListener> messageListeners)
         {
-            applicationLifetime?.ApplicationStopped.Register(() =>
-            {
-                Underdog.Common.App.IsRun = false;
+            _persistentConnection = persistentConnection;
+            _messageListeners = messageListeners;
 
-                //清除日志
-                Log.CloseAndFlush();
-            });
+            applicationLifetime?.ApplicationStarted.Register(AppIsRun);
+            applicationLifetime?.ApplicationStarted.Register(OnListenerStarted);
+            applicationLifetime?.ApplicationStopped.Register(AppIsStop);
+            applicationLifetime?.ApplicationStopped.Register(OnListenerStopped);
         }
 
-        public override Task StartAsync(CancellationToken cancellationToken)
+        public Task StartAsync(CancellationToken cancellationToken)
         {
-            // app.Run(window);是以同步方式运行，直到程序关闭才会触发 applicationLifetime.ApplicationStarted
-            // 只能重写 StartAsync 方法，并在之前标记 IsRun 为 true
-            Underdog.Common.App.IsRun = true;
+            return Task.CompletedTask;
+        }
 
-            return base.StartAsync(cancellationToken);
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
+        }
+
+        private void AppIsRun()
+        {
+            Underdog.Common.App.IsRun = true;
+        }
+
+        private void AppIsStop()
+        {
+            Underdog.Common.App.IsRun = false;
+            //清除日志
+            Log.CloseAndFlush();
+        }
+
+        private void OnListenerStarted()
+        {
+            foreach (var listener in _messageListeners)
+            {
+                listener.StartListening();
+            }
+        }
+
+        private void OnListenerStopped()
+        {
+            foreach (var listener in _messageListeners)
+            {
+                listener.StopListening();
+            }
         }
     }
 }

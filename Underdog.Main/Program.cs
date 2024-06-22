@@ -34,7 +34,7 @@ namespace Underdog.Main
 
         [System.STAThreadAttribute()]
         public static void Main(string[] args)
-        {
+       {
             #region set environment
 #if DEBUG
             Environment.SetEnvironmentVariable("environment", "Development");
@@ -60,14 +60,33 @@ namespace Underdog.Main
             builder.AddSerilogSetup();
 
             AppHost = builder.Build();
-            // 加载App.xaml资源
+
+            // 加载App.xaml资源 一定要放在操作视图之前
             var app = AppHost.Services.GetRequiredService<App>();
             app.InitializeComponent();
+
             AppHost.ConfigureApplication();
             AppHost.UseRegion<MainWindow>();
             AppHost.UseMainRegion();
             AppHost.UseModularity();
-            AppHost.Run();
+
+            // 异步启动Host
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await AppHost.RunAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred during IOC container registration: {ex.Message}");
+                    Environment.Exit(1);
+                }
+            });
+
+            // 启动主程序
+            var mainWindow = AppHost.Services.GetService<MainWindow>();
+            mainWindow!.ShowDialog();
         }
 
         /// <summary>
@@ -92,7 +111,7 @@ namespace Underdog.Main
 
         /// <summary>
         /// 配置通用服务 
-        /// Redis、EventBus、AutoMapper、Cache、SqlSugar等
+        /// Redis、Rabbitmq、EventBus、AutoMapper、Cache、SqlSugar等
         /// </summary>
         /// <param name="context"></param>
         /// <param name="services"></param>
@@ -101,6 +120,7 @@ namespace Underdog.Main
             // common
             context.ConfigureApplication(services);
             services.AddSingleton(new AppSettings(context.Configuration));
+            services.AddHttpClientSetup();
             services.AddAllOptionRegister();
             services.AddCacheSetup();
             services.AddSqlsugarSetup();
@@ -108,12 +128,17 @@ namespace Underdog.Main
             services.AddInitializationHostServiceSetup();
             services.AddAutoMapperSetup();
             services.AddClientAutoMapperSetup(); // 客户端AutoMapper配置
+            services.AddJobSetup();
             if (ConsoleHelper.IsConsoleApp())
             {
                 services.AddAppTableConfigSetup(context.HostingEnvironment);
             }
             services.AddRedisInitMqSetup();
+            services.AddRabbitMQSetup();
             services.AddEventBusSetup();
+            // 注册rabbitmq监听者
+            services.AddRabbitMQListenerSetup();
+            services.AddUIOpperationSetup();
         }
 
         /// <summary>
@@ -128,11 +153,12 @@ namespace Underdog.Main
             services.AddSingleton<IDispatcher, WpfDispatcher>();
             services.AddScoped<MainWindow>();
             services.AddScoped<MainWindowViewModel>();
-            services.AddHostedService<MainHostService<App, MainWindow>>();
             services.AddViewAndViewModel();
             services.AddRegion();
+            services.AddRegionViewScanner();
             services.AddDialog();
             services.AddMvvm();
+            services.AddHostedService<MainHostService>();// 如果使用rabbitmq 就要保证rabbitmq处于可连接状态
         }
     }
 }

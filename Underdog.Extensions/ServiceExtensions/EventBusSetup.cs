@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Underdog.EventBus;
+using Autofac;
+using Microsoft.Extensions.Logging;
 
 namespace Underdog.Extensions.ServiceExtensions
 {
@@ -29,24 +32,24 @@ namespace Underdog.Extensions.ServiceExtensions
                 services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
                 services.AddTransient<CardQueryIntegrationEventHandler>();
 
-                //if (AppSettings.app(new string[] { "RabbitMQ", "Enabled" }).ObjToBool())
-                //{
-                //    services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
-                //    {
-                //        var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
-                //        var iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
-                //        var logger = sp.GetRequiredService<ILogger<EventBusRabbitMQ>>();
-                //        var eventBusSubcriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
+                if (AppSettings.app(new string[] { "RabbitMQ", "Enabled" }).ObjToBool())
+                {
+                    services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
+                    {
+                        var rabbitMQPersistentConnection = sp.GetRequiredService<IRabbitMQPersistentConnection>();
+                        var iLifetimeScope = sp.GetRequiredService<ILifetimeScope>();
+                        var logger = sp.GetRequiredService<ILogger<EventBusRabbitMQ>>();
+                        var eventBusSubcriptionsManager = sp.GetRequiredService<IEventBusSubscriptionsManager>();
 
-                //        var retryCount = 5;
-                //        if (!string.IsNullOrEmpty(AppSettings.app(new string[] { "RabbitMQ", "RetryCount" })))
-                //        {
-                //            retryCount = int.Parse(AppSettings.app(new string[] { "RabbitMQ", "RetryCount" }));
-                //        }
+                        var retryCount = 5;
+                        if (!string.IsNullOrEmpty(AppSettings.app(new string[] { "RabbitMQ", "RetryCount" })))
+                        {
+                            retryCount = int.Parse(AppSettings.app(new string[] { "RabbitMQ", "RetryCount" }));
+                        }
 
-                //        return new EventBusRabbitMQ(rabbitMQPersistentConnection, logger, iLifetimeScope, eventBusSubcriptionsManager, subscriptionClientName, retryCount);
-                //    });
-                //}
+                        return new EventBusRabbitMQ(rabbitMQPersistentConnection, logger, iLifetimeScope, eventBusSubcriptionsManager, subscriptionClientName, retryCount);
+                    });
+                }
                 //if (AppSettings.app(new string[] { "Kafka", "Enabled" }).ObjToBool())
                 //{
                 //    services.AddHostedService<KafkaConsumerHostService>();

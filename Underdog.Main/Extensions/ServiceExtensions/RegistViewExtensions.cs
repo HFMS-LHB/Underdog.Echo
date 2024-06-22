@@ -9,6 +9,8 @@ using System.Windows.Threading;
 
 using Underdog.Core.Navigation.Regions;
 using Underdog.Wpf.Ioc;
+using System.Windows;
+using Underdog.Wpf.Navigation.Regions;
 
 namespace Underdog.Main.Extensions.ServiceExtensions
 {
@@ -45,6 +47,42 @@ namespace Underdog.Main.Extensions.ServiceExtensions
 
             // add dialog
             // services.RegisterDialog<V, VM>();
+        }
+
+        /// <summary>
+        /// 注册视图扫描器
+        /// </summary>
+        /// <param name="services"></param>
+        public static void AddRegionViewScanner(this IServiceCollection services)
+        {
+            services.AddSingleton<IRegionViewScanner, RegionViewScanner>((provider =>
+            {
+                var viewScanner = new RegionViewScanner();
+                // 直接获取当前域的所有程序集，按需筛选
+                var assemblies = AppDomain.CurrentDomain.GetAssemblies()
+                                                        .Where(x => !string.IsNullOrEmpty(x.FullName)
+                                                                    && IsScanAssembly(x.FullName))
+                                                        .ToList();
+                viewScanner.ConfigureAssemblies<FrameworkElement>(assemblies);
+                return viewScanner;
+            }));
+        }
+
+        private static bool IsScanAssembly(string assemblyFullName)
+        {
+            if (string.IsNullOrEmpty(assemblyFullName))
+            {
+                return false;
+            }
+            var assembyNames = new List<string>()
+                {
+                    "Underdog.Main"
+                };
+            if (assembyNames.Any(x => assemblyFullName.StartsWith(x)))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

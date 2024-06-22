@@ -29,6 +29,7 @@ namespace Underdog.Extensions.ServiceExtensions
             {
                 services!.AddHostedService<SeedDataHostedService>();
             }
+            services!.AddHostedService<QuartzJobHostedService>();
             services!.AddHostedService<EventBusHostedService>();
         }
     }

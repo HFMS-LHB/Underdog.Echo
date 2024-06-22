@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Underdog",
+  "classifications": ["Common/WPF", "Desktop", "MVVM"],
+  "name": "Underdog WPF Application",
+  "identity": "Underdog.Main.Template",
+  "shortName": "underdogmain",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Underdog",
+  "preferNameDirectory": true
+}
