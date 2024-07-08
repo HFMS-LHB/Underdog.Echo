@@ -1,10 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.Mvvm.Messaging;
+
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 using System.Configuration;
 using System.Data;
 using System.Windows;
 using System.Windows.Threading;
+
+using Underdog.Model.ViewMessageModels;
 
 namespace Underdog.Main
 {
@@ -17,6 +21,12 @@ namespace Underdog.Main
         public App()
         {
             _logger = Program.AppHost!.Services.GetRequiredService<ILogger<App>>();
+
+            WeakReferenceMessenger.Default.Register<ShutDownMessage>(this, async (r, m) =>
+            {
+                await Program.AppHost!.StopAsync();
+                App.Current.Shutdown();
+            });
         }
 
         protected override void OnStartup(StartupEventArgs e)

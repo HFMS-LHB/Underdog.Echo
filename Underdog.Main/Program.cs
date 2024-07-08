@@ -23,6 +23,9 @@ using Underdog.Main.Extensions.ServiceExtensions;
 using Underdog.Main.Common.HostDispatcher;
 using Underdog.Main.Extensions.HostedService;
 using Underdog.Wpf.Dialogs;
+using Underdog.Wpf.Ioc;
+using Underdog.Wpf.Extensions;
+using System.Reflection;
 
 
 namespace Underdog.Main
@@ -149,16 +152,22 @@ namespace Underdog.Main
         /// <param name="services"></param>
         private static void ConfigurationClientService(HostBuilderContext context, IServiceCollection services)
         {
+            // 当前程序集
+            Assembly currentAssembly = Assembly.GetExecutingAssembly();
+
             services.AddSingleton<App>();
             services.AddSingleton<IDispatcher, WpfDispatcher>();
             services.AddScoped<MainWindow>();
             services.AddScoped<MainWindowViewModel>();
-            services.AddViewAndViewModel();
+            // services.AddViewAndViewModel();
+            services.AddViewsAndViewModels(currentAssembly);
+            services.AddDialogVMMapping();
             services.AddRegion();
             services.AddRegionViewScanner();
             services.AddDialog();
             services.AddMvvm();
-            services.AddHostedService<MainHostService>();// 如果使用rabbitmq 就要保证rabbitmq处于可连接状态
+            // services.AddHostedService<RabbitmqHostedService>();
+            services.AddHostedService<MainHostedService>();// 如果使用rabbitmq 就要保证rabbitmq处于可连接状态
         }
     }
 }

@@ -49,40 +49,13 @@ namespace Underdog.Main.Extensions.ServiceExtensions
             // services.RegisterDialog<V, VM>();
         }
 
-        /// <summary>
-        /// 注册视图扫描器
-        /// </summary>
-        /// <param name="services"></param>
-        public static void AddRegionViewScanner(this IServiceCollection services)
+        public static void AddDialogVMMapping(this IServiceCollection services)
         {
-            services.AddSingleton<IRegionViewScanner, RegionViewScanner>((provider =>
-            {
-                var viewScanner = new RegionViewScanner();
-                // 直接获取当前域的所有程序集，按需筛选
-                var assemblies = AppDomain.CurrentDomain.GetAssemblies()
-                                                        .Where(x => !string.IsNullOrEmpty(x.FullName)
-                                                                    && IsScanAssembly(x.FullName))
-                                                        .ToList();
-                viewScanner.ConfigureAssemblies<FrameworkElement>(assemblies);
-                return viewScanner;
-            }));
-        }
-
-        private static bool IsScanAssembly(string assemblyFullName)
-        {
-            if (string.IsNullOrEmpty(assemblyFullName))
-            {
-                return false;
-            }
-            var assembyNames = new List<string>()
-                {
-                    "Underdog.Main"
-                };
-            if (assembyNames.Any(x => assemblyFullName.StartsWith(x)))
-            {
-                return true;
-            }
-            return false;
+            // add dialog
+            // services.RegisterDialog<V, VM>();
+            // services.RegisterDialogWindow<MessageBoxC>(nameof(MessageBoxC));
+            // services.RegisterDialog<NotificationDialog1, NotificationDialog1ViewModel>();
+            // services.RegisterDialog<NotificationDialog2, NotificationDialog2ViewModel>();
         }
     }
 }
