@@ -20,12 +20,12 @@ using Underdog.Common.Helper.Console;
 using Underdog.Main.Views;
 using Underdog.Main.ViewModels;
 using Underdog.Main.Extensions.ServiceExtensions;
-using Underdog.Main.Common.HostDispatcher;
-using Underdog.Main.Extensions.HostedService;
 using Underdog.Wpf.Dialogs;
 using Underdog.Wpf.Ioc;
 using Underdog.Wpf.Extensions;
 using System.Reflection;
+using Underdog.Common.UI;
+using Underdog.Main.Common.UI;
 
 
 namespace Underdog.Main
@@ -159,15 +159,14 @@ namespace Underdog.Main
             services.AddSingleton<IDispatcher, WpfDispatcher>();
             services.AddScoped<MainWindow>();
             services.AddScoped<MainWindowViewModel>();
-            // services.AddViewAndViewModel();
-            services.AddViewsAndViewModels(currentAssembly);
-            services.AddDialogVMMapping();
             services.AddRegion();
-            services.AddRegionViewScanner();
             services.AddDialog();
             services.AddMvvm();
-            // services.AddHostedService<RabbitmqHostedService>();
-            services.AddHostedService<MainHostedService>();// 如果使用rabbitmq 就要保证rabbitmq处于可连接状态
+            services.AddRegionViewScanner(currentAssembly);
+            services.AddViewsAndViewModels(currentAssembly);
+            // services.AddViewAndViewModel(); // 手动注册
+            services.AddDialogVMMapping();
+            services.AddClientHostedSetup();
         }
     }
 }

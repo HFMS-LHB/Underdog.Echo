@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 using Underdog.Common.UIService;
 
-using Underdog.Main.Common;
+using Underdog.Main.Common.UI;
 
 namespace Underdog.Main.Extensions.ServiceExtensions
 {

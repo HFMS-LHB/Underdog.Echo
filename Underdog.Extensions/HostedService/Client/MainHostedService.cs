@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Hosting;
-
 using Serilog;
 
 using System;
@@ -7,14 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
-using Underdog.EventBus;
-using Underdog.Extensions.RabbitMQ;
-using Underdog.Wpf;
-
-namespace Underdog.Main.Extensions.HostedService
+namespace Underdog.Extensions.HostedService.Client
 {
+    /// <summary>
+    /// 使用时要保证rabbitmq处于可连接状态
+    /// </summary>
     public class MainHostedService : IHostedService
     {
         public MainHostedService(IHostApplicationLifetime applicationLifetime)
@@ -35,12 +32,12 @@ namespace Underdog.Main.Extensions.HostedService
 
         private void AppIsRun()
         {
-            Underdog.Common.App.IsRun = true;
+            Common.App.IsRun = true;
         }
 
         private void AppIsStop()
         {
-            Underdog.Common.App.IsRun = false;
+            Common.App.IsRun = false;
             //清除日志
             Log.CloseAndFlush();
         }

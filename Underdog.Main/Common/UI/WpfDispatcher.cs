@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Underdog.Common.UI;
 
-namespace Underdog.Main.Common.HostDispatcher
+namespace Underdog.Main.Common.UI
 {
     public class WpfDispatcher : IDispatcher
     {

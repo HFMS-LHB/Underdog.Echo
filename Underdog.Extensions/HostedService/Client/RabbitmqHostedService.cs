@@ -11,7 +11,7 @@ using Underdog.EventBus;
 
 using Underdog.Extensions.RabbitMQ;
 
-namespace Underdog.Main.Extensions.HostedService
+namespace Underdog.Extensions.HostedService.Client
 {
     public class RabbitmqHostedService : IHostedService
     {

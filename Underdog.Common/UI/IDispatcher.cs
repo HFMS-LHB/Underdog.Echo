@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Underdog.Main.Common.HostDispatcher
+namespace Underdog.Common.UI
 {
     public interface IDispatcher
     {

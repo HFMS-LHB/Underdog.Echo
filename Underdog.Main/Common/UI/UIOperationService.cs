@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Underdog.Common.UIService;
 
-namespace Underdog.Main.Common
+namespace Underdog.Main.Common.UI
 {
     public class UIOperationService : IUIOperationService
     {
