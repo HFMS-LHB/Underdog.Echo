@@ -67,11 +67,6 @@ namespace Underdog.Common.Const
         public const string KeyVerCode = "verCode:";
 
         /// <summary>
-        /// 所有缓存关键字集合
-        /// </summary>
-        public const string KeyAll = "keys";
-
-        /// <summary>
         /// 定时任务缓存
         /// </summary>
         public const string KeyTimer = "timer:";

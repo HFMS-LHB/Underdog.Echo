@@ -7,13 +7,14 @@ using System.Linq.Expressions;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Underdog.Common.Caches.Interface;
 
 namespace Underdog.Common.Extensions
 {
     /// <summary>
-    /// Linq扩展
-    /// </summary>
-    public static class ExpressionExtensions
+	/// Linq扩展
+	/// </summary>
+	public static class ExpressionExtensions
     {
         #region ICaching
 

@@ -38,5 +38,15 @@ namespace Underdog.Common.Core
         {
             RootServices = app.Services;
         }
+
+        public static void ConfigureApplication(this IServiceCollection services)
+        {
+            InternalServices = services;
+        }
+
+        public static void ConfigureApplication(this IServiceProvider services)
+        {
+            RootServices = services;
+        }
     }
 }

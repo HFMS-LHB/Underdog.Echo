@@ -12,12 +12,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Underdog.Common.Utility;
 
 namespace Underdog.Common.DB.Aop
 {
     public static class SqlSugarAop
     {
-        public static void OnLogExecuting(ISqlSugarClient sqlSugarScopeProvider, string user, string table, string operate, string sql, SugarParameter[] p, ConnectionConfig config)
+        public static void OnLogExecuting(ISqlSugarClient sqlSugarScopeProvider, string user, string table, string operate, string sql,
+            SugarParameter[] p, ConnectionConfig config)
         {
             try
             {
@@ -25,13 +27,14 @@ namespace Underdog.Common.DB.Aop
 
                 if (!AppSettings.app(new string[] { "AppSettings", "SqlAOP", "Enabled" }).ObjToBool()) return;
 
-                if (AppSettings.app(["AppSettings", "SqlAOP", "LogToConsole", "Enabled"]).ObjToBool() ||
-                    AppSettings.app(["AppSettings", "SqlAOP", "LogToFile", "Enabled"]).ObjToBool() ||
-                    AppSettings.app(["AppSettings", "SqlAOP", "LogToDB", "Enabled"]).ObjToBool())
+                if (AppSettings.app(new string[] { "AppSettings", "SqlAOP", "LogToConsole", "Enabled" }).ObjToBool() ||
+                    AppSettings.app(new string[] { "AppSettings", "SqlAOP", "LogToFile", "Enabled" }).ObjToBool() ||
+                    AppSettings.app(new string[] { "AppSettings", "SqlAOP", "LogToDB", "Enabled" }).ObjToBool())
                 {
                     using (LogContextExtension.Create.SqlAopPushProperty(sqlSugarScopeProvider))
                     {
-                        Log.Information("------------------ \r\n User:[{User}]  Table:[{Table}]  Operate:[{Operate}] ConnId:[{ConnId}]【SQL语句】: \r\n {Sql}",
+                        Log.Information(
+                            "------------------ \r\n User:[{User}]  Table:[{Table}]  Operate:[{Operate}] ConnId:[{ConnId}]【SQL语句】: \r\n {Sql}",
                             user, table, operate, config.ConfigId, UtilMethods.GetNativeSql(sql, p));
                     }
                 }
@@ -48,7 +51,7 @@ namespace Underdog.Common.DB.Aop
             {
                 if (rootEntity.Id == 0)
                 {
-                    rootEntity.Id = SnowFlakeSingle.Instance.NextId();
+                    rootEntity.Id = IdGeneratorUtility.NextId();
                 }
             }
 
@@ -119,7 +122,8 @@ namespace Underdog.Common.DB.Aop
                         //if (App.User?.ID > 0 && dyCreateId != null && dyCreateId.GetValue(entityInfo.EntityValue) == null)
                         //    dyCreateId.SetValue(entityInfo.EntityValue, App.User.ID);
 
-                        if (dyCreateTime != null && dyCreateTime.GetValue(entityInfo.EntityValue) != null && (DateTime)dyCreateTime.GetValue(entityInfo.EntityValue) == DateTime.MinValue)
+                        if (dyCreateTime != null && dyCreateTime.GetValue(entityInfo.EntityValue) != null &&
+                            (DateTime)dyCreateTime.GetValue(entityInfo.EntityValue) == DateTime.MinValue)
                             dyCreateTime.SetValue(entityInfo.EntityValue, DateTime.Now);
 
                         break;

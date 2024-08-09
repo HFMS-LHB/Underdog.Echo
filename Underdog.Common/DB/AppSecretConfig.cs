@@ -13,7 +13,9 @@ namespace Underdog.Common.DB
         private static string Audience_Secret = AppSettings.app(new string[] { "Audience", "Secret" });
         private static string Audience_Secret_File = AppSettings.app(new string[] { "Audience", "SecretFile" });
 
+
         public static string Audience_Secret_String => InitAudience_Secret();
+
 
         private static string InitAudience_Secret()
         {
@@ -26,6 +28,7 @@ namespace Underdog.Common.DB
             {
                 return Audience_Secret;
             }
+
         }
 
         private static string DifDBConnOfSecurity(params string[] conn)
@@ -44,5 +47,7 @@ namespace Underdog.Common.DB
 
             return "";
         }
+
     }
+
 }

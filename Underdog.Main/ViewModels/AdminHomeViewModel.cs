@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Underdog.Common.Caches.Interface;
 
 namespace Underdog.Main.ViewModels
 {

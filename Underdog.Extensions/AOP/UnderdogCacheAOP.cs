@@ -8,13 +8,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Underdog.Common.Caches.Interface;
 
 namespace Underdog.Extensions.AOP
 {
     /// <summary>
-    /// 面向切面的缓存使用
-    /// </summary>
-    public class UnderdogCacheAOP : CacheAOPbase
+	/// 面向切面的缓存使用
+	/// </summary>
+	public class UnderdogCacheAOP : CacheAOPbase
     {
         //通过注入的方式，把缓存操作接口通过构造函数注入
         private readonly ICaching _cache;

@@ -25,13 +25,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.EventBus", "Underd
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{0C2E34C9-FBEE-4315-BF00-A059BDBCB647}"
 	ProjectSection(SolutionItems) = preProject
-		build\client.targets = build\client.targets
-		build\common.targets = build\common.targets
+		CreateYourProject.bat = CreateYourProject.bat
+		Directory.Build.props = Directory.Build.props
+		Underdog.Main.Clean.bat = Underdog.Main.Clean.bat
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{28180B3C-6E3C-4BF2-997B-FFDFA00DADB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Underdog.Tasks", "Underdog.Tasks\Underdog.Tasks.csproj", "{08C53DEB-C6F3-45E1-BF95-0B21AB8F0A2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Underdog.Tasks", "Underdog.Tasks\Underdog.Tasks.csproj", "{08C53DEB-C6F3-45E1-BF95-0B21AB8F0A2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

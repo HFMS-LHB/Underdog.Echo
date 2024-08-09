@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Underdog.Common.Extensions;
-using Underdog.Common;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,7 +14,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Underdog.EventBus.Eventbus;
 using Underdog.Common.Helper.Console;
-using Underdog.Common.Helper;
 using Underdog.EventBus.EventBusSubscriptions;
 
 namespace Underdog.EventBus

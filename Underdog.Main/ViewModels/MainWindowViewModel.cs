@@ -22,6 +22,7 @@ using System.Windows.Input;
 using Underdog.Common.GlobalVar;
 using Microsoft.Extensions.Logging;
 using Underdog.Common.Caches;
+using Underdog.Common.Caches.Interface;
 
 namespace Underdog.Main.ViewModels
 {

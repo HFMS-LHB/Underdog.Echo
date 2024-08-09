@@ -13,25 +13,25 @@ public static class DynamicBuildException
     private static List<CustomAttributeBuilder> GetEntityAttr(this DynamicBuilder builder)
     {
         FieldInfo fieldInfo = builder.GetType().GetField("entityAttr", BindingFlags.Instance | BindingFlags.NonPublic);
-        List<CustomAttributeBuilder> entityAttr = (List<CustomAttributeBuilder>) fieldInfo.GetValue(builder);
+        List<CustomAttributeBuilder> entityAttr = (List<CustomAttributeBuilder>)fieldInfo.GetValue(builder);
         return entityAttr;
     }
 
     private static CustomAttributeBuilder CreateIndex(SugarIndexAttribute indexAttribute)
     {
         Type type = typeof(SugarIndexAttribute);
-        var constructorTypes = new List<Type>() {typeof(string)};
+        var constructorTypes = new List<Type>() { typeof(string) };
         for (int i = 0; i < indexAttribute.IndexFields.Count; i++)
         {
-            constructorTypes.AddRange(new[] {typeof(string), typeof(OrderByType)});
+            constructorTypes.AddRange(new[] { typeof(string), typeof(OrderByType) });
         }
 
         constructorTypes.Add(typeof(bool));
 
-        var values = new List<object>() {indexAttribute.IndexName};
+        var values = new List<object>() { indexAttribute.IndexName };
         foreach (var indexField in indexAttribute.IndexFields)
         {
-            values.AddRange(new object[] {indexField.Key, indexField.Value});
+            values.AddRange(new object[] { indexField.Key, indexField.Value });
         }
 
         values.Add(indexAttribute.IsUnique);

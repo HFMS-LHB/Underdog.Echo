@@ -11,6 +11,10 @@ using Underdog.Common.Option;
 using StackExchange.Redis;
 using Underdog.Extensions.Redis;
 using Underdog.Common.Helper;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
+using Underdog.Common.Caches.Distributed;
+using Underdog.Common.Caches.Interface;
 
 namespace Underdog.Extensions.ServiceExtensions
 {
@@ -33,7 +37,7 @@ namespace Underdog.Extensions.ServiceExtensions
                     configuration.ResolveDns = true;
                     return ConnectionMultiplexer.Connect(configuration);
                 });
-                services.AddSingleton<ConnectionMultiplexer>(p => p.GetService<IConnectionMultiplexer>() as ConnectionMultiplexer);
+                services.AddSingleton(p => p.GetService<IConnectionMultiplexer>() as ConnectionMultiplexer);
                 //使用Redis
                 services.AddStackExchangeRedisCache(options =>
                 {
@@ -46,8 +50,11 @@ namespace Underdog.Extensions.ServiceExtensions
             else
             {
                 //使用内存
-                services.AddMemoryCache();
-                services.AddDistributedMemoryCache();
+                services.Remove(services.FirstOrDefault(x => x.ServiceType == typeof(IMemoryCache)));
+                services.AddSingleton<MemoryCacheManager>();
+                services.AddSingleton<IMemoryCache>(provider => provider.GetService<MemoryCacheManager>());
+                services.AddOptions();
+                services.AddSingleton<IDistributedCache, CommonMemoryDistributedCache>();
             }
 
             services.AddSingleton<ICaching, Caching>();

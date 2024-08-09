@@ -17,6 +17,7 @@ using Underdog.Core.Navigation.Regions;
 using Underdog.Common.GlobalVar;
 using CommunityToolkit.Mvvm.Messaging;
 using Underdog.Model.ViewMessageModels;
+using Underdog.Common.Caches.Interface;
 
 namespace Underdog.Main.ViewModels
 {
