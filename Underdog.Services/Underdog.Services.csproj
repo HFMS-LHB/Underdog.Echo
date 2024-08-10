@@ -1,8 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<ItemGroup>
-		<ProjectReference Include="..\Underdog.IServices\Underdog.IServices.csproj" />
-		<ProjectReference Include="..\Underdog.Repository\Underdog.Repository.csproj" />
-	</ItemGroup>
-
-</Project>

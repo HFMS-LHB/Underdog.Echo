@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
+
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Polly" Version="8.2.0" />
+		<PackageReference Include="protobuf-net" Version="3.2.26" />
+		<PackageReference Include="RabbitMQ.Client" Version="6.6.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Underdog.Echo.Common\Underdog.Echo.Common.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,6 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<ItemGroup>
-		<ProjectReference Include="..\Underdog.Common\Underdog.Common.csproj" />
-	</ItemGroup>
-</Project>

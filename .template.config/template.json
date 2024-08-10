@@ -3,12 +3,12 @@
   "author": "Underdog",
   "classifications": ["Common/WPF", "Desktop", "MVVM"],
   "name": "Underdog WPF Application",
-  "identity": "Underdog.Main.Template",
-  "shortName": "underdogmain",
+  "identity": "Underdog.Echo.Template",
+  "shortName": "underdogecho",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "Underdog",
+  "sourceName": "Underdog.Echo",
   "preferNameDirectory": true
 }

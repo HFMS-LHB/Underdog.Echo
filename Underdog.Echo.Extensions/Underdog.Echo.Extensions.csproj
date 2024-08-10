@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
+		<PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Underdog.Echo.EventBus\Underdog.Echo.EventBus.csproj" />
+		<ProjectReference Include="..\Underdog.Echo.Serilog\Underdog.Echo.Serilog.csproj" />
+		<ProjectReference Include="..\Underdog.Echo.Services\Underdog.Echo.Services.csproj" />
+		<ProjectReference Include="..\Underdog.Echo.Tasks\Underdog.Echo.Tasks.csproj" />
+	</ItemGroup>
+
+</Project>

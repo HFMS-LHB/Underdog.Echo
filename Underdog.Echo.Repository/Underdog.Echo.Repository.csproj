@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="MongoDB.Bson" Version="2.22.0" />
+		<PackageReference Include="MongoDB.Driver.Core" Version="2.22.0" />
+		<PackageReference Include="MongoDB.Driver" Version="2.22.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Underdog.Echo.Common\Underdog.Echo.Common.csproj" />
+	</ItemGroup>
+</Project>

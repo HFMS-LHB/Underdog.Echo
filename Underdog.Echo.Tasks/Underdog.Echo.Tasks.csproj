@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Quartz" Version="3.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Underdog.Echo.Common\Underdog.Echo.Common.csproj" />
+    <ProjectReference Include="..\Underdog.Echo.IServices\Underdog.Echo.IServices.csproj" />
+    <ProjectReference Include="..\Underdog.Echo.Repository\Underdog.Echo.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
