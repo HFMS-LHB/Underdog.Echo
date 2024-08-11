@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 	ProjectSection(SolutionItems) = preProject
 		CreateYourProject.bat = CreateYourProject.bat
 		Directory.Build.props = Directory.Build.props
+		README.md = README.md
 		Underdog.Echo.Clean.bat = Underdog.Echo.Clean.bat
 	EndProjectSection
 EndProject
