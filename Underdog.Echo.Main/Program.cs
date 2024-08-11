@@ -49,7 +49,7 @@ namespace Underdog.Echo.Main
             // create builder
             var builder = Host.CreateDefaultBuilder(args)
                 .UseContentRoot(AppContext.BaseDirectory)
-                .UseEnvironment(Environment.GetEnvironmentVariable("environment") ?? "Developement")
+                .UseEnvironment(Environment.GetEnvironmentVariable("environment") ?? "Development")
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureAppConfiguration(ConfigureAppConfiguration)
                 .ConfigureServices(ConfigurationCommonService)
