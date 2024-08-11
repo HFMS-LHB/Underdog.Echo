@@ -19,7 +19,7 @@ namespace Underdog.Echo.Main.Extensions.AutoMapper
         /// </summary>
         public VModelProfile()
         {
-            CreateMap<BoxDto, TestVModel>();
+            CreateMap<UserDto, TestVModel>();
         }
     }
 }

@@ -9,11 +9,11 @@ namespace Underdog.Echo.Extensions.Redis
 {
     public class RedisSubscribe : IRedisSubscribe
     {
-        private readonly ICardBoxServices _cardBoxServices;
+        private readonly ISysUserInfoServices _sysUserInfoServices;
 
-        public RedisSubscribe(ICardBoxServices cardBoxServices)
+        public RedisSubscribe(ISysUserInfoServices sysUserInfoServices)
         {
-            _cardBoxServices = cardBoxServices;
+            _sysUserInfoServices = sysUserInfoServices;
         }
 
         [Subscribe(RedisMqKey.Loging)]

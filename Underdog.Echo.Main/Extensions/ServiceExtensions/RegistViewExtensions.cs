@@ -24,35 +24,31 @@ namespace Underdog.Echo.Main.Extensions.ServiceExtensions
         {
             var regionManager = host.Services.GetService<IRegionManager>();
             regionManager?.RegisterViewWithRegion(RegionKey.Root, typeof(Home));
-            regionManager?.RegisterViewWithRegion(RegionKey.Root, typeof(AdminHome));
-            regionManager?.RegisterViewWithRegion(RegionKey.Root, typeof(AdminLogin));
-            regionManager?.RegisterViewWithRegion(RegionKey.Root, typeof(LockLogin));
         }
 
         /// <summary>
-        /// 注册视图和视图模型
+        /// 手动注册视图和视图模型
         /// </summary>
         /// <param name="services"></param>
         public static void AddViewAndViewModel(this IServiceCollection services)
         {
             services.AddTransient<Home>();
-            services.AddTransient<AdminHome>();
-            services.AddTransient<AdminLogin>();
-            services.AddTransient<LockLogin>();
 
             services.AddTransient<HomeViewModel>();
-            services.AddTransient<AdminHomeViewModel>();
-            services.AddTransient<AdminLoginViewModel>();
-            services.AddTransient<LockLoginViewModel>();
 
             // add dialog
             // services.RegisterDialog<V, VM>();
         }
 
+        /// <summary>
+        /// 注册弹窗
+        /// </summary>
+        /// <param name="services"></param>
         public static void AddDialogVMMapping(this IServiceCollection services)
         {
             // add dialog
             // services.RegisterDialog<V, VM>();
+            // // 自定义弹窗父窗体
             // services.RegisterDialogWindow<MessageBoxC>(nameof(MessageBoxC));
             // services.RegisterDialog<NotificationDialog1, NotificationDialog1ViewModel>();
             // services.RegisterDialog<NotificationDialog2, NotificationDialog2ViewModel>();

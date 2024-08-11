@@ -30,7 +30,7 @@ namespace Underdog.Echo.Extensions.ServiceExtensions
                 var subscriptionClientName = AppSettings.app(new string[] { "EventBus", "SubscriptionClientName" });
 
                 services.AddSingleton<IEventBusSubscriptionsManager, InMemoryEventBusSubscriptionsManager>();
-                services.AddTransient<CardQueryIntegrationEventHandler>();
+                services.AddTransient<SysUserQueryIntegrationEventHandler>();
 
                 if (AppSettings.app(new string[] { "RabbitMQ", "Enabled" }).ObjToBool())
                 {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Underdog.Echo.IServices.External
 {
-    public interface ILoginApiServices: IBaseApiServices<CardBox>
+    public interface ILoginApiServices: IBaseApiServices<SysUserInfo>
     {
 
     }

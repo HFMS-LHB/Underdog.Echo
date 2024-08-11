@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Underdog.Echo.Extensions.EventHandling
 {
-    public class CardQueryIntegrationEvent : IntegrationEvent
+    public class SysUserQueryIntegrationEvent : IntegrationEvent
     {
-        public string CardId { get; private set; }
+        public string LoginName { get; private set; }
 
-        public CardQueryIntegrationEvent(string cardid)
-            => CardId = cardid;
+        public SysUserQueryIntegrationEvent(string loginName)
+            => LoginName = loginName;
     }
 }

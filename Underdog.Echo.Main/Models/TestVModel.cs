@@ -18,18 +18,15 @@ namespace Underdog.Echo.Main.Models
         private bool isSelected;
 
         [ObservableProperty]
-        private string cardBoxName;
+        private string loginName;
 
         [ObservableProperty]
-        private string cardBoxCode;
+        private string realName;
 
         [ObservableProperty]
-        private int cardBoxType;
+        private int status;
 
         [ObservableProperty]
-        private string cardBoxDescription;
-
-        [ObservableProperty]
-        private bool isEnabled;
+        private string departmentId;
     }
 }

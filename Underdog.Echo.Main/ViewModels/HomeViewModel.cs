@@ -23,49 +23,20 @@ namespace Underdog.Echo.Main.ViewModels
 {
     public partial class HomeViewModel : ViewModelBase, INavigationAware
     {
-        private readonly ILogger<AdminHomeViewModel> _logger;
+        private readonly ILogger<HomeViewModel> _logger;
         private readonly ICaching _caching;
         private readonly IRegionManager _regionManager;
-        private readonly ICardBoxServices _cardBoxServices;
-        public HomeViewModel(ILogger<AdminHomeViewModel> logger,
+        private readonly ISysUserInfoServices _sysUserInfoServices;
+        public HomeViewModel(ILogger<HomeViewModel> logger,
                              ICaching caching,
                              IRegionManager regionManager,
-                             ICardBoxServices cardBoxServices)
+                             ISysUserInfoServices sysUserInfoServices)
         {
             _logger = logger;
             _caching = caching;
             _regionManager = regionManager;
-            _cardBoxServices = cardBoxServices;
-
-            Choose1Or2Command = new RelayCommand(() =>
-            {
-                IsFirstGrid = !IsFirstGrid;
-            });
-
-            Click1Command = new(() =>
-            {
-                _regionManager.RequestNavigate(RegionKey.Root, "LockLogin");
-                _logger.LogDebug(_caching.GetString("access_token"));
-            });
-
-            Click2Command = new(() =>
-            {
-                _regionManager.RequestNavigate(RegionKey.Root, "LockLogin");
-                _logger.LogDebug(_caching.GetString("access_token"));
-            });
-
-            _caching.SetString("access_token", "测试缓存");
+            _sysUserInfoServices = sysUserInfoServices;
         }
-
-        [ObservableProperty]
-        private bool isFirstGrid = true;
-
-        public RelayCommand Choose1Or2Command { get; }
-
-        public RelayCommand Click1Command { get; }
-
-        public RelayCommand Click2Command { get; }
-
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
@@ -76,6 +47,7 @@ namespace Underdog.Echo.Main.ViewModels
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
+            // 是否复用实例，返回true表示复用此实例，返回false表示不复用此实例，如果所有当前页面的实例都不能复用，则创建此页面的新实例
             return true;
         }
 

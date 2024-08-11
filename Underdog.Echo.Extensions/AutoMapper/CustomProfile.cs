@@ -17,7 +17,7 @@ namespace Underdog.Echo.Extensions.AutoMapper
         /// </summary>
         public CustomProfile()
         {
-            CreateMap<CardBox, BoxDto>();
+            CreateMap<SysUserInfo, UserDto>();
         }
     }
 }

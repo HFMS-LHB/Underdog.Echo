@@ -130,18 +130,18 @@ namespace Underdog.Echo.Common.Seed
 
                     Console.WriteLine($"Seeding database data (The Db Id:{MyContext.ConnId})...");
 
-                    #region CardBox
+                    #region SysUserInfo
 
-                    if (!await myContext.Db.Queryable<CardBox>().AnyAsync())
+                    if (!await myContext.Db.Queryable<SysUserInfo>().AnyAsync())
                     {
-                        myContext.GetEntityDB<CardBox>().InsertRange(
-                            JsonHelper.ParseFormByJson<List<CardBox>>(
-                                FileHelper.ReadFile(string.Format(SeedDataFolder, "CardBox"), Encoding.UTF8)));
-                        Console.WriteLine("Table:CardBox created success!");
+                        myContext.GetEntityDB<SysUserInfo>().InsertRange(
+                            JsonHelper.ParseFormByJson<List<SysUserInfo>>(
+                                FileHelper.ReadFile(string.Format(SeedDataFolder, "SysUserInfo"), Encoding.UTF8)));
+                        Console.WriteLine("Table:SysUserInfo created success!");
                     }
                     else
                     {
-                        Console.WriteLine("Table:CardBox already exists...");
+                        Console.WriteLine("Table:SysUserInfo already exists...");
                     }
 
                     #endregion

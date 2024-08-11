@@ -35,7 +35,7 @@ namespace Underdog.Echo.Extensions.HostedService
             if (AppSettings.app(new string[] { "EventBus", "Enabled" }).ObjToBool())
             {
                 var eventBus = _serviceProvider.GetRequiredService<IEventBus>();
-                eventBus.Subscribe<CardQueryIntegrationEvent, CardQueryIntegrationEventHandler>();
+                eventBus.Subscribe<SysUserQueryIntegrationEvent, SysUserQueryIntegrationEventHandler>();
             }
             return Task.CompletedTask;
         }

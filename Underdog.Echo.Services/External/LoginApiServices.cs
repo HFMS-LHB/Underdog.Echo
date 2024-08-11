@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Underdog.Echo.Services.External
 {
-    public class LoginApiServices: BaseApiServices<CardBox>, ILoginApiServices
+    public class LoginApiServices: BaseApiServices<SysUserInfo>, ILoginApiServices
     {
         IMapper _mapper;
         public LoginApiServices(IMapper mapper)

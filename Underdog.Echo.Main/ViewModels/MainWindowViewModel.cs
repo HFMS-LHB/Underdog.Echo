@@ -23,6 +23,8 @@ using Underdog.Echo.Common.GlobalVar;
 using Microsoft.Extensions.Logging;
 using Underdog.Echo.Common.Caches;
 using Underdog.Echo.Common.Caches.Interface;
+using HandyControl.Controls;
+using HandyControl.Data;
 
 namespace Underdog.Echo.Main.ViewModels
 {
@@ -31,39 +33,34 @@ namespace Underdog.Echo.Main.ViewModels
         private readonly ILogger<MainWindowViewModel> _logger;
         private readonly ICaching _caching;
         private readonly IRegionManager _regionManager;
-        private readonly ICardBoxServices _cardBoxServices;
+        private readonly ISysUserInfoServices _sysUserInfoServices;
         
         public MainWindowViewModel(ILogger<MainWindowViewModel> logger,
                                    ICaching caching,
                                    IRegionManager regionManager,
-                                   ICardBoxServices cardBoxServices)
+                                   ISysUserInfoServices sysUserInfoServices)
         {
             _logger = logger;
             _caching = caching;
             _regionManager = regionManager;
-            _cardBoxServices = cardBoxServices;
-
-            // 注册命令
-            AdminLoginCommand = new RelayCommand<string?>(ExecuteAdminLogin);
+            _sysUserInfoServices = sysUserInfoServices;
 
             WeakReferenceMessenger.Default.Register<HomeViewChangeMessage>(this, (r, m) =>
             {
-                LockAdminLogin = m.IsLockAdminLogin;
+                // 消息机制
             });
         }
 
         [ObservableProperty]
-        private string title = "Logo";
+        private string title = "Hello Underdog.Echo";
 
-        [ObservableProperty]
-        private bool lockAdminLogin = false;
 
-        public RelayCommand<string?> AdminLoginCommand { get; }
+        public RelayCommand<FunctionEventArgs<object>> SwitchItemCmd => new(SwitchItem);
 
-        private void ExecuteAdminLogin(string? navigatePath)
-        {
-            if (!LockAdminLogin && navigatePath != null)
-                _regionManager.RequestNavigate(RegionKey.Root, navigatePath);
-        }
+        private void SwitchItem(FunctionEventArgs<object> info) => Growl.Info((info.Info as SideMenuItem)?.Header.ToString());
+
+        public RelayCommand<string> SelectCmd => new(Select);
+
+        private void Select(string header) => Growl.Success(header);
     }
 }

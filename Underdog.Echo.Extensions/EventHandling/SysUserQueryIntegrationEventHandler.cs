@@ -11,26 +11,26 @@ using System.Threading.Tasks;
 
 namespace Underdog.Echo.Extensions.EventHandling
 {
-    public class CardQueryIntegrationEventHandler : IIntegrationEventHandler<CardQueryIntegrationEvent>
+    public class SysUserQueryIntegrationEventHandler : IIntegrationEventHandler<SysUserQueryIntegrationEvent>
     {
-        private readonly ICardBoxServices _cardBoxServices;
-        private readonly ILogger<CardQueryIntegrationEventHandler> _logger;
+        private readonly ISysUserInfoServices _sysUserInfoServices;
+        private readonly ILogger<SysUserQueryIntegrationEventHandler> _logger;
 
-        public CardQueryIntegrationEventHandler(
-            ICardBoxServices cardBoxServices,
-            ILogger<CardQueryIntegrationEventHandler> logger)
+        public SysUserQueryIntegrationEventHandler(
+            ISysUserInfoServices sysUserInfoServices,
+            ILogger<SysUserQueryIntegrationEventHandler> logger)
         {
-            _cardBoxServices = cardBoxServices;
+            _sysUserInfoServices = sysUserInfoServices;
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task Handle(CardQueryIntegrationEvent @event)
+        public async Task Handle(SysUserQueryIntegrationEvent @event)
         {
             _logger.LogInformation("----- Handling integration event: {IntegrationEventId} at {AppName} - ({@IntegrationEvent})", @event.Id, "Underdog", @event);
 
             ConsoleHelper.WriteSuccessLine($"----- Handling integration event: {@event.Id} at Underdog - ({@event})");
 
-            await _cardBoxServices.QueryById(@event.CardId.ToString());
+            await _sysUserInfoServices.QueryById(@event.LoginName.ToString());
         }
 
     }
