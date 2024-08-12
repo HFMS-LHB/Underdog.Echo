@@ -38,18 +38,16 @@ namespace Underdog.Echo.Main
         [System.STAThreadAttribute()]
         public static void Main(string[] args)
        {
+            // 根据编译模式手动设置环境变量 Development OR Production
             #region set environment
-#if DEBUG
-            Environment.SetEnvironmentVariable("environment", "Development");
-#else
-            Environment.SetEnvironmentVariable("environment", "Production");
-#endif
+            Environment.SetEnvironmentVariable("environment", Environments.Development);
+            // Environment.SetEnvironmentVariable("environment", Environments.Production);
             #endregion
 
             // create builder
             var builder = Host.CreateDefaultBuilder(args)
                 .UseContentRoot(AppContext.BaseDirectory)
-                .UseEnvironment(Environment.GetEnvironmentVariable("environment") ?? "Development")
+                .UseEnvironment(Environment.GetEnvironmentVariable("environment") ?? Environments.Development)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureAppConfiguration(ConfigureAppConfiguration)
                 .ConfigureServices(ConfigurationCommonService)
@@ -163,7 +161,7 @@ namespace Underdog.Echo.Main
             services.AddDialog();
             services.AddMvvm();
             services.AddRegionViewScanner(currentAssembly);
-            services.AddViewsAndViewModels(currentAssembly);
+            services.AddViewsAndViewModels(currentAssembly); // 通过程序集自动注册
             // services.AddViewAndViewModel(); // 手动注册
             services.AddDialogVMMapping();
             services.AddClientHostedSetup();
