@@ -1,5 +1,3 @@
-del  .\Underdog.Echo.Main\PassportCabinet.db   /s /q
-
 del  .\Underdog.Echo.Main\bin\*.*   /s /q
 del  .\Underdog.Echo.Main\obj\*.*   /s /q
 

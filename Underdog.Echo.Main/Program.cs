@@ -162,7 +162,7 @@ namespace Underdog.Echo.Main
             services.AddMvvm();
             services.AddModules();
             services.AddRegionViewScanner(currentAssembly);
-            services.AddViewsAndViewModels(currentAssembly);
+            services.AddViewsAndViewModels(currentAssembly); // 通过程序集自动注册
             // services.AddViewAndViewModel(); // 手动注册
             services.AddDialogVMMapping();
             services.AddClientHostedSetup();
