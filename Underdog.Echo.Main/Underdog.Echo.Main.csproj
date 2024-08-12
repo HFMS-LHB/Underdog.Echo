@@ -45,11 +45,13 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="HandyControl" Version="3.5.1" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
-		<PackageReference Include="Underdog.Wpf" Version="1.0.4" />
+		<PackageReference Include="Underdog.Wpf" Version="1.0.5" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Underdog.Echo.Extensions\Underdog.Echo.Extensions.csproj" />
+		<ProjectReference Include="..\Underdog.Echo.ModuleA\Underdog.Echo.ModuleA.csproj" />
+		<ProjectReference Include="..\Underdog.Echo.ModuleB\Underdog.Echo.ModuleB.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
