@@ -15,8 +15,37 @@ using Underdog.Core.Extensions;
 
 namespace Underdog.Echo.Main.Extensions.ServiceExtensions
 {
-    public static class RegistViewExtensions
+    public static class AppHostExtensions
     {
+        /// <summary>
+        /// 初始化App.xaml资源
+        /// </summary>
+        /// <param name="host"></param>
+        public static void InitializeComponent(this IHost host)
+        {
+            var app = host.Services.GetRequiredService<App>();
+            app.InitializeComponent();
+        }
+
+        public static void RunApplication<HostWindow>(this IHost host) where HostWindow:Window,new()
+        {
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await host.RunAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred during IOC container registration: {ex.Message}");
+                    Environment.Exit(1);
+                }
+            });
+
+            var mainWindow = host.Services.GetRequiredService<HostWindow>();
+            mainWindow!.ShowDialog();
+        }
+
         /// <summary>
         /// 注册区域
         /// </summary>
@@ -36,9 +65,6 @@ namespace Underdog.Echo.Main.Extensions.ServiceExtensions
             services.AddTransient<Home>();
 
             services.AddTransient<HomeViewModel>();
-
-            // add dialog
-            // services.RegisterDialog<V, VM>();
         }
 
         /// <summary>
@@ -47,10 +73,9 @@ namespace Underdog.Echo.Main.Extensions.ServiceExtensions
         /// <param name="services"></param>
         public static void AddDialogVMMapping(this IServiceCollection services)
         {
-            // add dialog
-            // services.RegisterDialog<V, VM>();
             // // 自定义弹窗父窗体
             // services.RegisterDialogWindow<MessageBoxC>(nameof(MessageBoxC));
+            // // 注册弹窗
             // services.RegisterDialog<NotificationDialog1, NotificationDialog1ViewModel>();
             // services.RegisterDialog<NotificationDialog2, NotificationDialog2ViewModel>();
         }
