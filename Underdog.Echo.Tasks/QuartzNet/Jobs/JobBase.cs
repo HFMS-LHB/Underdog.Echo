@@ -80,7 +80,7 @@ namespace Underdog.Echo.Tasks
                 }
             }
 
-            Console.Out.WriteLine(jobHistory);
+            // Console.Out.WriteLine(jobHistory);
             return jobHistory;
         }
     }

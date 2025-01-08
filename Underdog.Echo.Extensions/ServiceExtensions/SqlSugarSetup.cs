@@ -59,6 +59,8 @@ namespace Underdog.Echo.Extensions.ServiceExtensions
                     // 自定义特性
                     ConfigureExternalServices = new ConfigureExternalServices()
                     {
+                        //不建议使用,性能有很大问题,会导致redis堆积
+                        //核心问题在于SqlSugar，每次query都会查缓存, insert\update\delete,又会频繁GetAllKey，导致性能特别低
                         DataInfoCacheService = new SqlSugarCacheService(),
                         EntityService = (property, column) =>
                         {

@@ -21,7 +21,7 @@ namespace Underdog.Echo.Common.Caches.Interface
         bool Exists(string cacheKey);
         Task<bool> ExistsAsync(string cacheKey);
 
-        List<string> GetAllCacheKeys(string key = default);
+        List<string> GetAllCacheKeys(string pattern = default);
 
         T Get<T>(string cacheKey);
         Task<T> GetAsync<T>(string cacheKey);

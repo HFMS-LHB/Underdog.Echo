@@ -194,6 +194,8 @@ namespace Underdog.Echo.Common.Helper
         public bool requireAuth { get; set; } = true;
         public bool NoTabPage { get; set; } = false;
         public bool keepAlive { get; set; } = false;
+
+        public string icon { get; set; }
     }
 
 
