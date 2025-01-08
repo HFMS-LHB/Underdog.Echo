@@ -1,8 +1,8 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Underdog",
-  "classifications": ["Common/WPF", "Desktop", "MVVM"],
-  "name": "Underdog WPF Application",
+  "classifications": ["WPF", "Desktop", "MVVM"],
+  "name": "Underdog.Echo",
   "identity": "Underdog.Echo.Template",
   "shortName": "underdogecho",
   "tags": {

@@ -28,4 +28,9 @@ del  .\Underdog.Echo.Services\obj\*.*   /s /q
 del  .\Underdog.Echo.Tasks\bin\*.*   /s /q
 del  .\Underdog.Echo.Tasks\obj\*.*   /s /q
 
+del  .\Underdog.Echo.ModuleA\bin\*.*   /s /q
+del  .\Underdog.Echo.ModuleA\obj\*.*   /s /q
+del  .\Underdog.Echo.ModuleB\bin\*.*   /s /q
+del  .\Underdog.Echo.ModuleB\obj\*.*   /s /q
+
 pause
